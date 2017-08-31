@@ -1,17 +1,21 @@
+package model;
+
 import java.util.List;
 
 /**
  * Created by Wosin on 28.08.2017.
  */
+import static utilities.ParsingUtils.getCurrencyFromBalance;
+import static utilities.ParsingUtils.parseDoubleFromBalance;
 public class BankAccount {
-    String accountNumber;
-    double totalBalance;
-    double availableBalance;
-    String currency;
+    private String accountNumber;
+    private double totalBalance;
+    private double availableBalance;
+    private String currency;
 
     @Override
     public String toString() {
-        return "BankAccount{" +
+        return "model.BankAccount{" +
                 "accountNumber='" + accountNumber + '\'' +
                 ", totalMoney=" + totalBalance +
                 ", availableMoney=" + availableBalance +
@@ -24,13 +28,13 @@ public class BankAccount {
         assert accountDetailsList.get(0).length() >= 24;
         String accountTotalMoney = accountDetailsList.get(1);
         String accountAvailableMoney = accountDetailsList.get(2);
-        String currency = ParsingUtils.getCurrencyFromBalance(accountTotalMoney);
+        String currency = getCurrencyFromBalance(accountTotalMoney);
 
         assert accountAvailableMoney.contains(currency);
 
         this.accountNumber = accountDetailsList.get(0);
         this.currency = currency;
-        this.totalBalance = ParsingUtils.parseDoubleFromBalance(accountTotalMoney);
-        this.availableBalance = ParsingUtils.parseDoubleFromBalance(accountAvailableMoney);
+        this.totalBalance = parseDoubleFromBalance(accountTotalMoney);
+        this.availableBalance = parseDoubleFromBalance(accountAvailableMoney);
     }
 }

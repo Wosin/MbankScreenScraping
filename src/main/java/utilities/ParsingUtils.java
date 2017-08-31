@@ -1,3 +1,5 @@
+package utilities;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -5,7 +7,7 @@ import org.apache.log4j.Logger;
  */
 public class ParsingUtils {
 
-    public static Logger log = Logger.getLogger(ParsingUtils.class);
+    private static final Logger log = Logger.getLogger(ParsingUtils.class);
 
     public static String getCurrencyFromBalance(String balance) {
        String currency =  balance.substring(balance.length()-3);
@@ -13,7 +15,7 @@ public class ParsingUtils {
            return currency;
        } else {
            log.debug("No currency code was present, or code was not standarized.");
-           return new String();
+           return "";
        }
     }
 

@@ -1,14 +1,17 @@
+import model.BankAccount;
+import org.apache.log4j.Logger;
+import webclient.MbankWebClient;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
 
 /**
  * Created by Wosin on 28.08.2017.
  */
 public class ScreenScraper {
     public static void main(String[] args) throws IOException {
-        java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(Level.OFF);
+        Logger.getLogger("com.gargoylesoftware").setLevel(org.apache.log4j.Level.ERROR);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Provide your MBank Username/Usercode");
         String username = scanner.next();
@@ -17,6 +20,6 @@ public class ScreenScraper {
         String password = scanner.next();
         MbankWebClient mbankWebClient = new MbankWebClient();
         List<BankAccount> bankAccountList = mbankWebClient.getBankAccountsUsingCredentials(username, password);
-        bankAccountList.forEach(account -> System.out.println(account));
+        bankAccountList.forEach(System.out::println);
     }
 }
